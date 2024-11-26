@@ -1,0 +1,14 @@
+{
+  "name": "pytorchjs",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "description": "",
+  "dependencies": {
+    "js-pytorch": "^0.7.2"
+  }
+}
