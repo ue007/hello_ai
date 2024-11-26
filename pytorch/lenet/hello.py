@@ -3,6 +3,7 @@ import torch.nn as nn
 import torch.optim as optim
 from torchvision import datasets, transforms
 import matplotlib.pyplot as plt
+import torch.onnx
 
 
 # 定义训练集的数据转换，将图像转换为张量，并进行归一化
@@ -109,6 +110,16 @@ def main():
 
     # 保存训练好的模型
     torch.save(model.state_dict(), './save_model/lenet_model.pth')
+
+    # 保存训练好的模型为ONNX格式
+    # 首先需要一个示例输入数据，用于指定模型输入的形状等信息
+    example_input = torch.randn(1, 1, 28, 28).to(device)
+    torch.onnx.export(model,
+                      example_input,
+                      "./save_model/lenet_model.onnx",
+                      verbose=True,  # 可以设置为True查看详细的转换过程信息
+                      input_names=['input'],
+                      output_names=['output'])
 
     # 绘制训练和测试损失曲线以及测试准确率曲线（可选，用于可视化训练效果）
     plt.plot(range(1, epochs + 1), train_losses, label='Train Loss')
