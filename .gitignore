@@ -164,3 +164,7 @@ cython_debug/
 **/**/data
 
 node_modules
+
+**/**.onnx
+**/**.pth
+**/**.ckpt
